@@ -1,0 +1,17 @@
+Munin plugin for the Motorola Surfboard 6120 Cable Modem
+===========================
+
+Description
+====
+This script uses the Munin monitoring framework to graph SNR (signal-to-noise) ratios of your 
+SB6120 cable modem. This script will handle the possible multiple bonded channels your cable modem
+can use with your ISP.
+
+Installation
+====
+Copy the scripts into /etc/munin/plugins and restart your munin-node service. 
+Several iterations of the munin-cron service will need to run for graphing to start.
+
+
+Contact
+===
