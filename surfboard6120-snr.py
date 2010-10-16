@@ -4,8 +4,9 @@ import urllib
 import re
 import sys
 
-config_text = """graph_title Signal 
-graph_vlabel dB (decibels)"""
+config_text = """graph_title Cable Modem Signal to Noise Ratio
+graph_vlabel dB (decibels)
+graph_category network"""
 
 if len(sys.argv) > 1:
     if sys.argv[1] == "config":
