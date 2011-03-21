@@ -74,8 +74,6 @@ for current in re.finditer(r"\d+\s", smChannels):
         channel_output = channel_output + "upstream%s%d.label Upstream Channel %s\n" % (graph_type, counter, current.group(0))
         counter = counter + 1
 
-print '"' + sys.argv[0] + '"'
-
 if len(sys.argv) > 1:
     if sys.argv[1] == "config":
         if graph_type == "pwr":

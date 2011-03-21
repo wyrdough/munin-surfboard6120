@@ -3,7 +3,7 @@ Munin plugin for the Motorola Surfboard 6120 Cable Modem
 
 Description
 ===
-This script uses the Munin monitoring framework to graph SNR (signal-to-noise) ratios of your SB6120 cable modem. This script will handle the possible multiple bonded channels your cable modem can use with your ISP.
+This script uses the Munin monitoring framework to graph SNR (signal-to-noise) ratios and power levels of your SB6120 cable modem. This script will handle the possible multiple bonded channels your cable modem can use with your ISP.
 
 Requirements
 ===
@@ -14,32 +14,49 @@ Installation
 ===
 Grab source from Github repo: git://github.com/jforman/munin-surfboard6120.git
 
-There are two options to installing the plugin:
-* Copy surfboard-snr6120.py to /etc/munin/plugins.
-* Create a symlink from /etc/munin/plugins to the Git checkout plugin script (surfboard6120-snr.py).
+On Debian or Ubuntu:
+1. cp surfboard6120_.py /usr/share/munin/plugins
+2. ln -s /usr/share/munin/plugins/surfboard6120_.py /etc/munin/plugins/surfboard6120_snr.py
+3. ln -s /usr/share/munin/plugins/surfboard6120_.py /etc/munin/plugins/surfboard6120_pwr.py
 
-Restart munin-node.
+Restart munin-node
 
 Several iterations of the munin-cron service will need to run for graphing to start.
 
 Example Output
 ===
-jforman@monitor:~/munin-surfboard6120$ ./surfboard6120-snr.py config
+
+$ ./surfboard6120_snr.py config
 graph_title SB6120 Signal to Noise (dB)
 graph_vlabel dB (decibels)
 graph_category network
-downstreamsnr0.label Downstream Channel 215
-downstreamsnr1.label Downstream Channel 213
-downstreamsnr2.label Downstream Channel 214
-downstreamsnr3.label Downstream Channel 216
-upstreamsnr0.label Upstream Channel 3
+downstreamsnr0.label Downstream Channel 51 
+downstreamsnr1.label Downstream Channel 52 
+downstreamsnr2.label Downstream Channel 53 
+downstreamsnr3.label Downstream Channel 54 
 
-jforman@monitor:~/munin-surfboard6120$ ./surfboard6120-snr.py
-downstreamsnr0.value 39
-downstreamsnr1.value 39
-downstreamsnr2.value 39
-downstreamsnr3.value 39
-upstreamsnr0.value 42
+$ ./surfboard6120_snr.py
+downstreamsnr0.value 38
+downstreamsnr1.value 38
+downstreamsnr2.value 38
+downstreamsnr3.value 38
+
+$ ./surfboard6120_pwr.py config
+graph_title SB6120 Power Level (dBmV)
+graph_vlabel dBmV
+graph_category network
+downstreampwr0.label Downstream Channel 51 
+downstreampwr1.label Downstream Channel 52 
+downstreampwr2.label Downstream Channel 53 
+downstreampwr3.label Downstream Channel 54 
+upstreampwr0.label Upstream Channel 3 
+
+$ ./surfboard6120_pwr.py
+downstreampwr0.value 5
+downstreampwr1.value 5
+downstreampwr2.value 4
+downstreampwr3.value 4
+upstreampwr0.value 46
 
 Contact
 ===
